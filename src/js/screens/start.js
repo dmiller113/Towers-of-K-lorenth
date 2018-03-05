@@ -1,4 +1,5 @@
 import rot from 'rot-js';
+import PlayScreen from './play';
 
 const startScreen = { 
     init: (_display, state) => ({
@@ -7,7 +8,7 @@ const startScreen = {
     }),
     handleInput: (event, e, game) => {
         if (event == 'keydown' && e.keyCode === rot.VK_RETURN) {
-            game.swapScreen(startScreen);
+            game.swapScreen(PlayScreen);
         }
         return (game.state);
     },

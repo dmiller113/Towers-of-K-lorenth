@@ -11,6 +11,7 @@ const Game = function(display, initialState) {
             return (this.state.gameStatus === 'dead');
         },
         render: function() {
+            if (this.state.currentScreen === null) return;
             this.state.currentScreen.render(display, this.state);
         },
         swapScreen: function(screen) {
@@ -22,6 +23,7 @@ const Game = function(display, initialState) {
                     );
             }
             this.state = screen.init(display, this.state);
+            display.clear();
             screen.render(display, this.state);
         },
         state: initialState,
@@ -50,7 +52,14 @@ const display = new rot.Display(
     }
 );
 
-const loadConfig = () => ({});
+const loadConfig = () => ({
+    directions: {
+        UP: rot.VK_8,
+        DOWN: rot.VK_2,
+        LEFT: rot.VK_4,
+        RIGHT: rot.VK_6,
+    }
+});
 const loadTemplates = () => ({});
 const initialState = {
     currentScreen: null,
